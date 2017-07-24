@@ -23,12 +23,17 @@ object Main extends App {
     print("Enter '1' to pull a token from the bag, enter '0' to exit: ")
     val pull = scala.io.StdIn.readLine
 
-    pull.toInt match {
-  	  case 0 => System.exit(0)
-  	  case 1 => { 
-  	  	pullToken(bag)
-  	  	tokenLoop()
-  	  }
+    try {
+      pull.toInt match {
+    	  case 0 => System.exit(0)
+    	  case 1 => { 
+    	  	pullToken(bag)
+    	  	tokenLoop()
+    	  }
+        case _ => tokenLoop
+      }
+    } catch {
+      case e: Exception => tokenLoop()
     }
   }
 
